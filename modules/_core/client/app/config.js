@@ -1,7 +1,7 @@
 (function (window) {
   'use strict';
 
-  var applicationModuleName = 'mean';
+  var applicationModuleName = 'stitch';
 
   var service = {
     applicationModuleName: applicationModuleName,
