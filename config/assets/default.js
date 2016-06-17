@@ -32,8 +32,8 @@ module.exports = {
       'modules/*/client/scss/*.scss'
     ],
     js: [
-      'modules/core/client/app/config.js',
-      'modules/core/client/app/init.js',
+      'modules/_core/client/app/config.js',
+      'modules/_core/client/app/init.js',
       'modules/*/client/*.js',
       'modules/*/client/**/*.js'
     ],
@@ -51,7 +51,7 @@ module.exports = {
     gulpConfig: ['gulpfile.js'],
     allJS: ['server.js', 'config/**/*.js', 'modules/*/server/**/*.js'],
     models: 'modules/*/server/models/**/*.js',
-    routes: ['modules/!(core)/server/routes/**/*.js', 'modules/core/server/routes/**/*.js'],
+    routes: ['modules/!(core)/server/routes/**/*.js', 'modules/_core/server/routes/**/*.js'],
     sockets: 'modules/*/server/sockets/**/*.js',
     config: ['modules/*/server/config/*.js'],
     policies: 'modules/*/server/policies/*.js',

@@ -21,8 +21,8 @@ module.exports = function (karmaConfig) {
 
     preprocessors: {
       'modules/*/client/views/**/*.html': ['ng-html2js'],
-      'modules/core/client/app/config.js': ['coverage'],
-      'modules/core/client/app/init.js': ['coverage'],
+      'modules/_core/client/app/config.js': ['coverage'],
+      'modules/_core/client/app/init.js': ['coverage'],
       'modules/*/client/*.js': ['coverage'],
       'modules/*/client/config/*.js': ['coverage'],
       'modules/*/client/controllers/*.js': ['coverage'],
