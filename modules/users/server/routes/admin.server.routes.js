@@ -7,7 +7,7 @@ var adminPolicy = require('../policies/admin.server.policy'),
   admin = require('../controllers/admin.server.controller');
 
 module.exports = function (app) {
-  // User route registration first. Ref: #713
+  // User route registration first.
   require('./users.server.routes.js')(app);
 
   // Users collection routes

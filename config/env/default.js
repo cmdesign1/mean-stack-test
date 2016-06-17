@@ -2,8 +2,8 @@
 
 module.exports = {
   app: {
-    title: 'MEAN.JS',
-    description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
+    title: 'Stitch',
+    description: 'An ideas driven, global community.',
     keywords: 'mongodb, express, angularjs, node.js, mongoose, passport',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
@@ -23,7 +23,7 @@ module.exports = {
     secure: false
   },
   // sessionSecret should be changed for security measures and concerns
-  sessionSecret: process.env.SESSION_SECRET || 'MEAN',
+  sessionSecret: process.env.SESSION_SECRET || 'j3XSn4mES3ajTXdJVbFmuBx9VHDBDC7pnFghjbfu57LDzZ4V8CQ2kFctCYP3nSyD',
   // sessionKey is set to the generic sessionId key used by PHP applications
   // for obsecurity reasons
   sessionKey: 'sessionId',
@@ -31,7 +31,7 @@ module.exports = {
   // Lusca config
   csrf: {
     csrf: false,
-    csp: { /* Content Security Policy object */},
+    csp: {},
     xframe: 'SAMEORIGIN',
     p3p: 'ABCDEF',
     xssProtection: true
