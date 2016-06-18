@@ -143,32 +143,38 @@ var UserSchema = new Schema({
   /* Relational */
   friends: {
     type: [{
-      type: String
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     }]
   },
   teams: {
     type: [{
-      type: String
+      type: Schema.Types.ObjectId,
+      ref: 'Team'
     }]
   },
   projects: {
     type: [{
-      type: String
+      type: Schema.Types.ObjectId,
+      ref: 'Project'
     }]
   },
   chats: {
     type: [{
-      type: String
+      type: Schema.Types.ObjectId,
+      ref: 'Chat'
     }]
   },
   applications: {
     type: [{
-      type: String
+      type: Schema.Types.ObjectId,
+      ref: 'Application'
     }]
   },
   blogPosts: {
     type: [{
-      type: String
+      type: Schema.Types.ObjectId,
+      ref: 'BlogPost'
     }]
   },
   /* Account confirmation */
