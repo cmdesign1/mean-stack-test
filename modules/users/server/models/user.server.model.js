@@ -69,10 +69,28 @@ var UserSchema = new Schema({
   salt: {
     type: String
   },
+  /* Profile */
   profileImageURL: {
     type: String,
     default: 'modules/users/client/img/profile/default.png'
   },
+  bannerImageURL: {
+    type: String,
+    default: 'modules/users/client/img/profile/default.png'
+  },
+  status: {
+    type: String,
+    default: ''
+  },
+  bio: {
+    type: String,
+    default: ''
+  },
+  customURL: {
+    type: String,
+    default: ''
+  },
+  /* Auth provider */
   provider: {
     type: String,
     required: 'Provider is required'
@@ -87,12 +105,70 @@ var UserSchema = new Schema({
     default: ['user'],
     required: 'Please provide at least one role'
   },
+  /* Timestamps */
   updated: {
     type: Date
   },
   created: {
     type: Date,
     default: Date.now
+  },
+  /* Social */
+  googleURL: {
+    type: String,
+    default: ''
+  },
+  twitterURL: {
+    type: String,
+    default: ''
+  },
+  facebookURL: {
+    type: String,
+    default: ''
+  },
+  linkedinURL: {
+    type: String,
+    default: ''
+  },
+  githubURL: {
+    type: String,
+    default: ''
+  },
+  /* Relational */
+  friends: {
+    type: [{
+      type: String
+    }]
+  },
+  teams: {
+    type: [{
+      type: String
+    }]
+  },
+  projects: {
+    type: [{
+      type: String
+    }]
+  },
+  chats: {
+    type: [{
+      type: String
+    }]
+  },
+  applications: {
+    type: [{
+      type: String
+    }]
+  },
+  blogPosts: {
+    type: [{
+      type: String
+    }]
+  },
+  /* Account confirmation */
+  emailConfirm: {
+    type: Boolean,
+    default: false
   },
   /* For reset password */
   resetPasswordToken: {
