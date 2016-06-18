@@ -96,29 +96,23 @@ exports.list = function (req, res) {
  * Article middleware
  */
 exports.articleByParam = function (req, res, next, param) {
+  var obj;
+
   if (!mongoose.Types.ObjectId.isValid(param)) {
-    Article.findOne({ customURL: param }).populate('user', 'displayName').exec(function (err, article) {
-      if (err) {
-        return next(err);
-      } else if (!article) {
-        return res.status(404).send({
-          message: 'No article with that custom URL has been found'
-        });
-      }
-      req.article = article;
-      next();
-    });
+    obj = Article.findOne({ customURL: param });
   } else {
-    Article.findById(param).populate('user', 'displayName').exec(function (err, article) {
-      if (err) {
-        return next(err);
-      } else if (!article) {
-        return res.status(404).send({
-          message: 'No article with that identifier has been found'
-        });
-      }
-      req.article = article;
-      next();
-    });
+    obj = Article.findById(param);
   }
+
+  obj.populate('user', 'displayName').exec(function (err, article) {
+    if (err) {
+      return next(err);
+    } else if (!article) {
+      return res.status(404).send({
+        message: 'No article with that identifier has been found'
+      });
+    }
+    req.article = article;
+    next();
+  });
 };
