@@ -96,7 +96,6 @@ exports.list = function (req, res) {
  * Article middleware
  */
 exports.articleByParam = function (req, res, next, param) {
-
   if (!mongoose.Types.ObjectId.isValid(param)) {
     Article.findOne({ customURL: param }).populate('user', 'displayName').exec(function (err, article) {
       if (err) {

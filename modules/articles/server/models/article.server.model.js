@@ -18,7 +18,7 @@ var ArticleSchema = new Schema({
     type: String,
     default: '',
     trim: true,
-    required: 'Title cannot be blank'
+    required: 'Title cannot be blank.'
   },
   content: {
     type: String,
@@ -31,6 +31,7 @@ var ArticleSchema = new Schema({
   },
   customURL: {
     type: String,
+    unique: 'This URL unavailable.',
     default: '',
     trim: true
   }
