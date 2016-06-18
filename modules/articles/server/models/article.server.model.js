@@ -28,6 +28,11 @@ var ArticleSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
+  },
+  customURL: {
+    type: String,
+    default: '',
+    trim: true
   }
 });
 
