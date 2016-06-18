@@ -88,7 +88,8 @@ var UserSchema = new Schema({
   },
   customURL: {
     type: String,
-    default: ''
+    default: '',
+    trim: true
   },
   /* Auth provider */
   provider: {
@@ -116,23 +117,28 @@ var UserSchema = new Schema({
   /* Social */
   googleURL: {
     type: String,
-    default: ''
+    default: '',
+    trim: true
   },
   twitterURL: {
     type: String,
-    default: ''
+    default: '',
+    trim: true
   },
   facebookURL: {
     type: String,
-    default: ''
+    default: '',
+    trim: true
   },
   linkedinURL: {
     type: String,
-    default: ''
+    default: '',
+    trim: true
   },
   githubURL: {
     type: String,
-    default: ''
+    default: '',
+    trim: true
   },
   /* Relational */
   friends: {
