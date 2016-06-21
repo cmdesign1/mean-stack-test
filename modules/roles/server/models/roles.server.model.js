@@ -42,7 +42,7 @@ var RoleSchema = new Schema({
     default: Date.now
   },
   ended: {
-    typ: Date,
+    typ: Date
   },
   /* Relational */
   applications: {

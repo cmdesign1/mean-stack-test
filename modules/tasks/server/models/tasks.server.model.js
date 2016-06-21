@@ -27,7 +27,7 @@ var TaskSchema = new Schema({
   status: {
     type: String,
     enum: ['pending', 'active', 'complete']
-  }
+  },
   /* Content */
   desc: {
     type: String,

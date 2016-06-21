@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
 var FileSchema = new Schema({
   name: {
     type: String
-  }
+  },
   type: {
     type: String
   }

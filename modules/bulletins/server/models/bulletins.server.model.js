@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
 var BulletinSchema = new Schema({
   type: {
     type: String
-  }
+  },
   owner: {
     type: [{
       type: Schema.Types.ObjectId
