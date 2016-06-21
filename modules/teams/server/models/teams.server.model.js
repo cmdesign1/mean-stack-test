@@ -74,6 +74,19 @@ var TeamSchema = new Schema({
   rolesOpen: {
     type: Boolean
   },
+  /* Administrators */
+  createdBy: {
+    type: [{
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }]
+  },
+  admins: {
+    type: [{
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }]
+  },
   /* Relational */
   members: {
     type: [{
