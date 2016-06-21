@@ -32,7 +32,7 @@ var ApplicationSchema = new Schema({
       type: String,
       trim: true
     }]
-  }
+  },
   /* Timestamps */
   updated: {
     type: Date
