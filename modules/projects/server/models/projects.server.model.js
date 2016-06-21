@@ -111,7 +111,7 @@ var ProjectSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Task'
     }]
-  }
+  },
   bulletins: {
     type: [{
       type: Schema.Types.ObjectId,

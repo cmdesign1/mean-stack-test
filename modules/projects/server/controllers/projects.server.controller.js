@@ -51,10 +51,10 @@ exports.update = function (req, res) {
 
   project.name = req.body.name;
   project.type = req.body.type;
-  projects.tags = req.body.tags;
+  project.tags = req.body.tags;
   project.profileImageURL = req.body.profileImageURL;
   project.bannerImageURL = req.body.bannerImageURL;
-  projects.status = req.body.status;
+  project.status = req.body.status;
   project.desc = req.body.desc;
   project.customURL = req.body.customURL;
   project.googleURL = req.body.googleURL;

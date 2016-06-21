@@ -5,7 +5,7 @@
     .module('projects.services')
     .factory('ProjectsService', ProjectsService);
 
-  projectsService.$inject = ['$resource'];
+  ProjectsService.$inject = ['$resource'];
 
   function ProjectsService($resource) {
     return $resource('api/projects/:projectId', {
