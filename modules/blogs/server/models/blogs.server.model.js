@@ -35,7 +35,7 @@ var BlogPostSchema = new Schema({
   bannerImageURL: {
     type: String,
     default: ''
-  }
+  },
   /* Timestamps */
   updated: {
     type: Date
