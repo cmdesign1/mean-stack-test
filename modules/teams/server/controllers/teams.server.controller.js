@@ -118,7 +118,7 @@ exports.teamByParam = function (req, res, next, param) {
     obj = Team.findById(param);
   }
 
-  obj.populate('createdBy', 'displayName').exec(function (err, article) {
+  obj.populate('createdBy', 'displayName').exec(function (err, team) {
     if (err) {
       return next(err);
     } else if (!team) {
