@@ -14,6 +14,7 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   var team = new Team(req.body);
+  team.createdBy = req.user;
   team.admins.push(req.user);
   team.members.push(req.user);
 
@@ -43,7 +44,7 @@ exports.read = function (req, res) {
 };
 
 /**
- * Update an article
+ * Update a team
  */
 exports.update = function (req, res) {
   var team = req.team;
@@ -74,7 +75,7 @@ exports.update = function (req, res) {
 };
 
 /**
- * Delete an article
+ * Delete a team
  */
 exports.delete = function (req, res) {
   var team = req.team;
@@ -91,7 +92,7 @@ exports.delete = function (req, res) {
 };
 
 /**
- * List of Articles
+ * List of Teams
  */
 exports.list = function (req, res) {
   Team.find().sort('-created').populate('createdBy', 'displayName').exec(function (err, teams) {
@@ -106,7 +107,7 @@ exports.list = function (req, res) {
 };
 
 /**
- * Article middleware
+ * Team middleware
  */
 exports.teamByParam = function (req, res, next, param) {
   var obj;
