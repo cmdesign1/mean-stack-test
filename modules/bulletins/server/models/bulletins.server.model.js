@@ -26,10 +26,8 @@ var BulletinSchema = new Schema({
   },
   /* Content */
   title: {
-    body: {
-      type: String,
-      default: ''
-    },
+    type: String,
+    default: ''
   },
   body: {
     type: String,

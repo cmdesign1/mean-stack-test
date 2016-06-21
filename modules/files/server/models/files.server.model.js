@@ -15,7 +15,7 @@ var FileSchema = new Schema({
   },
   type: {
     type: String
-  }
+  },
   owner: {
     type: [{
       type: Schema.Types.ObjectId
