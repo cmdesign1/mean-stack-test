@@ -6,116 +6,116 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   _ = require('lodash'),
-  Role = mongoose.model('Role'),
+  Task = mongoose.model('Task'),
   errorHandler = require(path.resolve('./modules/_core/server/controllers/errors.server.controller'));
 
 /**
- * Create a role
+ * Create a task
  */
 exports.create = function (req, res) {
-  var role = new Role(req.body);
-  role.owner = req.user;
-  role.author = req.user;
+  var task = new Task(req.body);
+  task.owner = req.user;
+  task.author = req.user;
 
-  role.save(function (err) {
+  task.save(function (err) {
     if (err) {
       return res.status(400).send({
-        role: errorHandler.getErrorMessage(err)
+        task: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(role);
+      res.json(task);
     }
   });
 };
 
 /**
- * Show the current role
+ * Show the current task
  */
 exports.read = function (req, res) {
   // convert mongoose document to JSON
-  var role = (req.role) ? req.role.toJSON() : {};
+  var task = (req.task) ? req.task.toJSON() : {};
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  role.isCurrentUserAdmin = !!(req.user && role.author && req.user._id.toString() === role.author.toString());
+  task.isCurrentUserAdmin = !!(req.user && task.author && req.user._id.toString() === task.author.toString());
 
-  res.json(role);
+  res.json(task);
 };
 
 /**
- * Update a role
+ * Update a task
  */
 exports.update = function (req, res) {
-  var role = req.role;
+  var task = req.task;
 
-  role.body = req.body.body;
-  role.links = req.body.links;
-  role.open = req.body.open;
+  task.body = req.body.body;
+  task.links = req.body.links;
+  task.open = req.body.open;
 
-  role.save(function (err) {
+  task.save(function (err) {
     if (err) {
       return res.status(400).send({
-        role: errorHandler.getErrorMessage(err)
+        task: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(role);
+      res.json(task);
     }
   });
 };
 
 /**
- * Delete a role
+ * Delete a task
  */
 exports.delete = function (req, res) {
-  var role = req.role;
+  var task = req.task;
 
-  role.remove(function (err) {
+  task.remove(function (err) {
     if (err) {
       return res.status(400).send({
-        role: errorHandler.getErrorMessage(err)
+        task: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(role);
+      res.json(task);
     }
   });
 };
 
 /**
- * List of role
+ * List of task
  */
 exports.list = function (req, res) {
-  Role.find().sort('-created').populate('createdBy', 'displayName').exec(function (err, roles) {
+  Task.find().sort('-created').populate('createdBy', 'displayName').exec(function (err, tasks) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(roles);
+      res.json(tasks);
     }
   });
 };
 
 /**
- * Role middleware
+ * Task middleware
  */
-exports.roleByParam = function (req, res, next, param) {
+exports.taskByParam = function (req, res, next, param) {
   var obj;
 
   if (!mongoose.Types.ObjectId.isValid(param)) {
     return res.status(400).send({
-      message: 'Role ID does not exist.'
+      message: 'Task ID does not exist.'
     });
   }
 
-  obj.populate('user', 'displayName').exec(function (err, role) {
+  obj.populate('user', 'displayName').exec(function (err, task) {
     if (err) {
       return next(err);
-    } else if (!role) {
+    } else if (!task) {
       return res.status(404).send({
-        message: 'No role with that identifier has been found'
+        message: 'No task with that identifier has been found'
       });
     }
-    req.role = role;
+    req.task = task;
     next();
   });
 };
