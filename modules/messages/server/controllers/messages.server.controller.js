@@ -5,7 +5,6 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  _ = require('lodash'),
   Message = mongoose.model('Message'),
   errorHandler = require(path.resolve('./modules/_core/server/controllers/errors.server.controller'));
 
@@ -14,7 +13,7 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   var message = new Message(req.body);
-  message.owner = req.user;
+  message.owner = req.chat || req.file || req.bulletin || req.task || req.project;
   message.author = req.user;
 
   message.save(function (err) {
@@ -49,8 +48,6 @@ exports.update = function (req, res) {
   var message = req.message;
 
   message.body = req.body.body;
-  message.links = req.body.links;
-  message.open = req.body.open;
 
   message.save(function (err) {
     if (err) {
