@@ -10,16 +10,15 @@ var mongoose = require('mongoose'),
  * Application Schema
  */
 var ApplicationSchema = new Schema({
-  user: {
+  owner: {
+    type: [{
+      type: Schema.Types.ObjectId
+    }]
+  },
+  author: {
     type: [{
       type: Schema.Types.ObjectId,
       ref: 'User'
-    }]
-  },
-  project: {
-    type: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Project'
     }]
   },
   /* Content */

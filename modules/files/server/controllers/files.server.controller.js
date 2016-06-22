@@ -48,9 +48,10 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var file = req.file;
 
-  file.body = req.body.body;
-  file.links = req.body.links;
-  file.open = req.body.open;
+  file.type = req.body.type;
+  file.name = req.body.name;
+  file.desc = req.body.desc;
+  file.profileImageURL = req.body.profileImageURL;
 
   file.save(function (err) {
     if (err) {

@@ -14,8 +14,8 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   var application = new Application(req.body);
-  application.user = req.user;
-  application.project = req.project;
+  application.owner = req.project || req.team;
+  application.author = req.user;
 
   application.save(function (err) {
     if (err) {
@@ -37,7 +37,7 @@ exports.read = function (req, res) {
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  application.isCurrentUserAdmin = !!(req.user && application.user && req.user._id.toString() === application.user.toString());
+  application.isCurrentUserAdmin = !!(req.user && application.author && req.user._id.toString() === application.author.toString());
 
   res.json(application);
 };
