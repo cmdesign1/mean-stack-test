@@ -5,7 +5,6 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  _ = require('lodash'),
   Task = mongoose.model('Task'),
   errorHandler = require(path.resolve('./modules/_core/server/controllers/errors.server.controller'));
 
@@ -14,7 +13,7 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   var task = new Task(req.body);
-  task.owner = req.user;
+  task.owner = req.project;
   task.author = req.user;
 
   task.save(function (err) {
@@ -48,9 +47,9 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var task = req.task;
 
-  task.body = req.body.body;
-  task.links = req.body.links;
-  task.open = req.body.open;
+  task.name = req.body.name;
+  task.status = req.body.status;
+  task.desc = req.body.desc;
 
   task.save(function (err) {
     if (err) {
