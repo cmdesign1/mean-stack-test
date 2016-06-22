@@ -14,8 +14,7 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   var role = new Role(req.body);
-  role.owner = req.user;
-  role.author = req.user;
+  role.owner = req.project;
 
   role.save(function (err) {
     if (err) {
@@ -37,7 +36,7 @@ exports.read = function (req, res) {
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  role.isCurrentUserAdmin = !!(req.user && role.author && req.user._id.toString() === role.author.toString());
+  role.isCurrentUserAdmin = !!(req.user && role.user && req.user._id.toString() === role.user.toString());
 
   res.json(role);
 };
@@ -48,8 +47,9 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var role = req.role;
 
-  role.body = req.body.body;
-  role.links = req.body.links;
+  role.name = req.body.name;
+  role.desc = req.body.desc;
+  role.offer = req.body.offer;
   role.open = req.body.open;
 
   role.save(function (err) {
