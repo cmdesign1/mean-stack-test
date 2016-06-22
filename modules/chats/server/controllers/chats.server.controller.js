@@ -5,7 +5,6 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  _ = require('lodash'),
   Chat = mongoose.model('Chat'),
   errorHandler = require(path.resolve('./modules/_core/server/controllers/errors.server.controller'));
 
@@ -14,8 +13,6 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   var chat = new Chat(req.body);
-  chat.owner = req.user;
-  chat.author = req.user;
 
   chat.save(function (err) {
     if (err) {
@@ -37,7 +34,7 @@ exports.read = function (req, res) {
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  chat.isCurrentUserAdmin = !!(req.user && chat.author && req.user._id.toString() === chat.author.toString());
+  chat.isCurrentUserMember = !!(req.user && _.includes(chat.users, req.user._id.toString()));
 
   res.json(chat);
 };
@@ -48,9 +45,7 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var chat = req.chat;
 
-  chat.body = req.body.body;
-  chat.links = req.body.links;
-  chat.open = req.body.open;
+  chat.name = req.body.name;
 
   chat.save(function (err) {
     if (err) {
@@ -81,7 +76,7 @@ exports.delete = function (req, res) {
 };
 
 /**
- * List of chat
+ * List of chats
  */
 exports.list = function (req, res) {
   Chat.find().sort('-created').populate('createdBy', 'displayName').exec(function (err, chats) {
