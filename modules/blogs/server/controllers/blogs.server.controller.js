@@ -14,7 +14,7 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   var blog = new BlogPost(req.body);
-  blog.owner = req.user;
+  blog.owner = req.project || req.team || req.user;
   blog.author = req.user;
 
   blog.save(function (err) {
@@ -48,9 +48,9 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var blog = req.blog;
 
+  blog.title = req.body.title;
   blog.body = req.body.body;
-  blog.links = req.body.links;
-  blog.open = req.body.open;
+  blog.bannerImageURL = req.body.bannerImageURL;
 
   blog.save(function (err) {
     if (err) {
