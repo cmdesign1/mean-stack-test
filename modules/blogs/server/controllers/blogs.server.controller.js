@@ -5,7 +5,6 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  _ = require('lodash'),
   BlogPost = mongoose.model('BlogPost'),
   errorHandler = require(path.resolve('./modules/_core/server/controllers/errors.server.controller'));
 

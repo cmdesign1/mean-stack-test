@@ -5,7 +5,6 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  _ = require('lodash'),
   Bulletin = mongoose.model('Bulletin'),
   errorHandler = require(path.resolve('./modules/_core/server/controllers/errors.server.controller'));
 
@@ -14,7 +13,7 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   var bulletin = new Bulletin(req.body);
-  bulletin.owner = req.user;
+  bulletin.owner = req.project || req.team;
   bulletin.author = req.user;
 
   bulletin.save(function (err) {
@@ -48,9 +47,10 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var bulletin = req.bulletin;
 
+  bulletin.type = req.body.type;
+  bulletin.title = req.body.title;
   bulletin.body = req.body.body;
-  bulletin.links = req.body.links;
-  bulletin.open = req.body.open;
+  bulletin.profileImageURL = req.body.profileImageURL;
 
   bulletin.save(function (err) {
     if (err) {
